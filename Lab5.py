@@ -7,7 +7,16 @@ def guess(i, guess):
         else:
             return False
 # def printWord(word, lettersGotten):
-#     return none
+#     for i
+def removeLetter(letter, validGuesses):
+    itemsToDelete = []
+    for i in range(len(validGuesses)):
+        if letter == validGuesses[i]:
+            itemsToDelete.append(i)
+    for i in range(len(itemsToDelete)):
+        del validGuesses[i]
+    print(validGuesses)
+    return validGuesses
 def main():
     word = "turtle"
     lettersGuessed = []
@@ -28,15 +37,13 @@ def main():
         validGuesses = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
         playerGuess = input("> ")
         # printWord(word, lettersGuessed)
-        for letter in validGuesses:
-            if letter == playerGuess:
-                validGuesses.remove(letter)
+        for i in validGuesses:
+            if i == playerGuess:
+                removeLetter(i, validGuesses)
                 for i in list(word):
                     var = guess(i, playerGuess)
                     if var == True:
                         correctGuesses.append(i)
-        printVar = "".join(map(str, correctGuesses))
-        print(printVar)
 
 
 main()
