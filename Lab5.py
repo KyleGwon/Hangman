@@ -15,7 +15,6 @@ def printWord(word, lettersGotten):
             if i == l:
                 del orderedList[num]
                 orderedList.append(i)
-
     print(orderedList)
 def removeLetter(letter, validGuesses):
     itemsToDelete = []
@@ -31,30 +30,40 @@ def main():
     word = "turtle"
     lettersGuessed = []
     correctGuesses = []
-    wrongGuessesLeft = 5
+    wrongGuessesLeft = 6
     wrongGuesses = 0
     validGuesses = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-    # print("Welcome to hangman!")
-    # 
+    print("Welcome to hangman!")
     while wrongGuessesLeft > 0:
-        # emptyLine()
-        # print("You have " + str(wrongGuessesLeft) + " wrong answers left.")
-        # 
-        # emptyLine()
-        # print("There are " + str(len(word)) + " letters in the word.")
-        # 
+        emptyLine()
+        print("You have " + str(wrongGuessesLeft) + " wrong answers left.")
+        emptyLine()
+        print("There are " + str(len(word)) + " letters in the word.")
         printWord(word, correctGuesses)
-        # print("What is your guess?")
-        # emptyLine()
+        print("What is your guess?")
+        emptyLine()
         playerGuess = input("> ")
         for i in validGuesses:
             if i == playerGuess:
                 validGuesses = removeLetter(i, validGuesses)
-                for i in list(word):
-                    var = guess(i, playerGuess)
-                    if var == True:
-                        correctGuesses.append(i)
-                    #Need help on "if var == false:""
+                for i in range(len(word)):
+                    var = guess(list(word)[i], playerGuess)
+                    if var:
+                        correctGuesses.append(playerGuess)
+                    if not var:
+                        print("Incorrect")
+                        wrongGuessesLeft -= 1
+                        # runs too many times
+                # for i in list(word):
+                #     var = guess(i, playerGuess)
+                #     if var:
+                #         correctGuesses.append(i)
+                #     if not var:
+                #         if wrongGuessesLeft == 1
+                #             print("You lost! The word was " + word + "!")
+                #         else:
+                #             print("Incorrect! you have " + str(wrongGuessesLeft) + " wrong answers left!")
+                    #Need help on "if var == false:"
 
 
 main()
